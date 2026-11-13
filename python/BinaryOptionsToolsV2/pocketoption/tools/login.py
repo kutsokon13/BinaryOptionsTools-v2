@@ -456,7 +456,7 @@ def _solve_via_nocaptchaai(api_key: str, *, timeout: int) -> str:
         json={
             "clientKey": api_key,
             "task": {
-                "type": "ReCaptchaV3TaskProxyless",
+                "type": "RecaptchaV3TaskProxylessM1s",
                 "websiteURL": LOGIN_URL,
                 "websiteKey": RECAPTCHA_SITEKEY,
                 "pageAction": "login",
@@ -513,3 +513,4 @@ def _check_response_for_errors(body: str) -> None:
 
 class LoginError(RuntimeError):
     """Raised when authentication fails."""
+#  Change NoCaptchaAI task type to M1
