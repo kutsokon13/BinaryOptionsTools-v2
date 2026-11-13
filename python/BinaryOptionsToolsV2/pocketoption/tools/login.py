@@ -451,18 +451,18 @@ def _solve_via_nocaptchaai(api_key: str, *, timeout: int) -> str:
 
     BASE = "https://api.nocaptchaai.com"
 
-  submit = req.post(
-    f"{BASE}/createTask", json={
-        "clientKey": api_key,
-        "task": {
-            "type": "RecaptchaV3TaskProxylessM1",
-            "websiteURL": LOGIN_URL,
-            "websiteKey": RECAPTCHA_SITEKEY,
-            "pageAction": "login",
-            "minScore": 0.5,
-        },
-    }, timeout=30,
-)
+    submit = req.post(
+        f"{BASE}/createTask", json={
+            "clientKey": api_key,
+            "task": {
+                "type": "RecaptchaV3TaskProxylessM1",
+                "websiteURL": LOGIN_URL,
+                "websiteKey": RECAPTCHA_SITEKEY,
+                "pageAction": "login",
+                "minScore": 0.5,
+            },
+        }, timeout=30,
+    )
     result = submit.json()
     if result.get("errorId") != 0:
         raise LoginError(
@@ -511,4 +511,3 @@ def _check_response_for_errors(body: str) -> None:
 
 class LoginError(RuntimeError):
     """Raised when authentication fails."""
-#  Change NoCaptchaAI task type to M1
